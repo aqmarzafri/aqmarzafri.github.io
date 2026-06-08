@@ -355,6 +355,82 @@
       color: var(--primary);
     }
 
+    /* ── Project cards ────────────────────────────────────── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--hairline);
+      margin-top: var(--md);
+    }
+
+    .project-card {
+      background: var(--canvas-elevated);
+      padding: var(--md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--xxs);
+    }
+
+    .project-card .project-type {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .project-card .project-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-top: var(--xxxs);
+    }
+
+    .project-card .project-sub {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .project-card .project-desc {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.6;
+      margin-top: var(--xxs);
+      flex: 1;
+    }
+
+    .project-card .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--xxxs);
+      margin-top: var(--xs);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.65px;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: var(--xxxs);
+      width: fit-content;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .project-card .project-link:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    @media (max-width: 1024px) {
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── Footer ───────────────────────────────────────────── */
     footer {
       background: var(--canvas);
@@ -456,6 +532,7 @@
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="assets/cv.pdf" target="_blank" rel="noopener">CV</a>
     </nav>
   </header>
@@ -541,6 +618,51 @@
         <span class="badge">Linux</span>
         <span class="badge">REST APIs</span>
         <span class="badge">Docker</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="container">
+      <p class="section-label">Projects &amp; Activities</p>
+      <h2 class="section-headline">What I've Been Up To</h2>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <p class="project-type">Course Project</p>
+          <h3 class="project-title">GitHub Pages Portfolio</h3>
+          <p class="project-sub">Computer Programming</p>
+          <p class="project-desc">
+            Developing and maintaining this personal portfolio site as part of a
+            Computer Programming course — built with plain HTML &amp; CSS and
+            hosted directly on GitHub Pages.
+          </p>
+          <a href="https://github.com/aqmarzafri" target="_blank" rel="noopener" class="project-link">View on GitHub ↗</a>
+        </div>
+
+        <div class="project-card">
+          <p class="project-type">Club Activity</p>
+          <h3 class="project-title">MSARK</h3>
+          <p class="project-sub">Malaysian Students' Association in the Republic of Korea</p>
+          <p class="project-desc">
+            Active member of MSARK, representing the Malaysian student community
+            in South Korea — participating in cultural events, networking, and
+            community initiatives.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <p class="project-type">Hobby</p>
+          <h3 class="project-title">Music Performance</h3>
+          <p class="project-sub">Guitar · Bass Guitar · Percussions</p>
+          <p class="project-desc">
+            Self-taught musician with hands-on experience performing live.
+            Plays guitar, bass guitar, and various percussion instruments —
+            driven entirely by passion and independent learning.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
