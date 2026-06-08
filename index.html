@@ -4,273 +4,572 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aqmar Zafri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
+    /* ── Token ladder ─────────────────────────────────────── */
+    :root {
+      /* Colors */
+      --canvas:           #181818;
+      --canvas-elevated:  #303030;
+      --canvas-light:     #ffffff;
+      --primary:          #da291c;
+      --primary-active:   #b01e0a;
+      --ink:              #ffffff;
+      --body:             #969696;
+      --muted:            #666666;
+      --hairline:         #303030;
+      --on-primary:       #ffffff;
+
+      /* Spacing — 8 px ladder */
+      --xxxs:  4px;
+      --xxs:   8px;
+      --xs:   16px;
+      --sm:   24px;
+      --md:   32px;
+      --lg:   48px;
+      --xl:   64px;
+      --xxl:  96px;
+      --super:128px;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #f9f9f9;
-      color: #222;
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: var(--canvas);
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: #0066cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: inherit; text-decoration: none; }
 
-    /* ── Layout ─────────────────────────────────────────── */
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
-
-    /* ── Hero ───────────────────────────────────────────── */
-    .hero {
+    /* ── Top Nav ──────────────────────────────────────────── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--hairline);
+      height: 64px;
       display: flex;
       align-items: center;
-      gap: 2rem;
-      padding: 2.5rem 0 2rem;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 0 var(--xl);
     }
 
-    .hero img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 3px solid #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-    }
-
-    .hero-text h1 {
-      font-size: 1.9rem;
-      font-weight: 700;
+    .top-nav .monogram {
+      font-size: 18px;
+      font-weight: 500;
       letter-spacing: -0.5px;
+      color: var(--ink);
+      margin-right: auto;
     }
 
-    .hero-text .tagline {
-      margin-top: 0.3rem;
-      color: #555;
-      font-size: 1rem;
+    .top-nav .monogram span {
+      color: var(--primary);
     }
 
-    .hero-links {
-      margin-top: 0.8rem;
+    .top-nav nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
+      gap: var(--md);
     }
 
-    .hero-links a {
+    .top-nav nav a {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.65px;
+      text-transform: uppercase;
+      color: var(--body);
+      transition: color 0.15s;
+    }
+
+    .top-nav nav a:hover { color: var(--ink); }
+
+    /* ── Hero Band ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      background: var(--canvas);
+      overflow: hidden;
+      padding: var(--super) var(--xl) var(--xxl);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #3c3c3c, #030303 64%);
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .hero-profile {
+      position: absolute;
+      right: var(--xl);
+      bottom: 0;
+      width: 340px;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      z-index: 1;
+      filter: grayscale(20%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--xs);
+    }
+
+    .hero h1 {
+      font-size: 80px;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -1.6px;
+      color: var(--ink);
+    }
+
+    .hero-tagline {
+      margin-top: var(--sm);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.08px;
+      color: var(--body);
+      max-width: 420px;
+    }
+
+    .hero-actions {
+      margin-top: var(--md);
+      display: flex;
+      gap: var(--xs);
+      flex-wrap: wrap;
+    }
+
+    /* ── Buttons ──────────────────────────────────────────── */
+    .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
-      font-size: 0.875rem;
-      padding: 0.3rem 0.75rem;
-      border: 1px solid #0066cc;
-      border-radius: 20px;
+      height: 48px;
+      padding: 0 var(--md);
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--primary-active); color: var(--on-primary); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      height: 48px;
+      padding: 0 var(--md);
+      background: transparent;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      border-radius: 0;
+      cursor: pointer;
       transition: background 0.15s, color 0.15s;
     }
 
-    .hero-links a:hover {
-      background: #0066cc;
-      color: #fff;
-      text-decoration: none;
+    .btn-outline:hover { background: var(--ink); color: var(--canvas); }
+
+    /* ── Container ────────────────────────────────────────── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--xl);
     }
 
-    /* ── Sections ───────────────────────────────────────── */
-    section {
-      margin-top: 2.5rem;
+    /* ── Section shell ────────────────────────────────────── */
+    .section {
+      padding: var(--xxl) var(--xl);
+      border-bottom: 1px solid var(--hairline);
     }
 
-    section h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #0066cc;
-      margin-bottom: 1rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 2px solid #e0e0e0;
+      color: var(--primary);
+      margin-bottom: var(--sm);
     }
 
-    /* ── About ──────────────────────────────────────────── */
-    .about p {
-      color: #444;
+    .section-headline {
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.36px;
+      color: var(--ink);
+      margin-bottom: var(--md);
     }
 
-    /* ── Experience / Education cards ───────────────────── */
-    .card-list { display: flex; flex-direction: column; gap: 1rem; }
+    /* ── About ────────────────────────────────────────────── */
+    .about-body {
+      max-width: 640px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--body);
+    }
+
+    /* ── Card grid ────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--hairline);
+      margin-top: var(--md);
+    }
 
     .card {
-      background: #fff;
-      border: 1px solid #e8e8e8;
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
+      background: var(--canvas-elevated);
+      padding: var(--md);
     }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .card-header h3 {
-      font-size: 1rem;
+    .card-period {
+      font-size: 11px;
       font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--xxs);
     }
 
-    .card-header .period {
-      font-size: 0.8rem;
-      color: #888;
-      white-space: nowrap;
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: var(--xxxs);
     }
 
-    .card .org {
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 0.15rem;
+    .card-org {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: var(--xs);
     }
 
-    .card .desc {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #444;
+    .card-desc {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.6;
     }
 
-    /* ── Skills ─────────────────────────────────────────── */
+    /* ── Skills ───────────────────────────────────────────── */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: var(--xxs);
+      margin-top: var(--md);
     }
 
-    .skill-tag {
-      background: #eef4ff;
-      color: #0052a3;
-      border-radius: 4px;
-      padding: 0.25rem 0.7rem;
-      font-size: 0.85rem;
+    .badge {
+      background: var(--canvas-elevated);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      padding: var(--xxxs) var(--xs);
+      border: 1px solid var(--hairline);
     }
 
-    /* ── Footer ─────────────────────────────────────────── */
+    /* ── Livery band (CV CTA) ─────────────────────────────── */
+    .livery-band {
+      background: var(--primary);
+      padding: var(--xxl) var(--xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--md);
+      flex-wrap: wrap;
+    }
+
+    .livery-band h2 {
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.36px;
+      color: var(--on-primary);
+    }
+
+    .livery-band p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      margin-top: var(--xxs);
+      max-width: 420px;
+    }
+
+    .btn-outline-on-red {
+      display: inline-flex;
+      align-items: center;
+      height: 48px;
+      padding: 0 var(--md);
+      background: transparent;
+      color: var(--on-primary);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      border: 1px solid var(--on-primary);
+      border-radius: 0;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn-outline-on-red:hover {
+      background: var(--on-primary);
+      color: var(--primary);
+    }
+
+    /* ── Footer ───────────────────────────────────────────── */
     footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #e0e0e0;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #aaa;
+      background: var(--canvas);
+      padding: var(--xl) var(--xl) var(--lg);
+      border-top: 1px solid var(--hairline);
     }
 
-    /* ── Responsive ─────────────────────────────────────── */
-    @media (max-width: 480px) {
-      .hero { flex-direction: column; text-align: center; }
-      .hero-links { justify-content: center; }
-      .card-header { flex-direction: column; }
-      .card-header .period { align-self: flex-start; }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--md);
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .footer-brand span { color: var(--primary); }
+
+    .footer-links {
+      display: flex;
+      gap: var(--md);
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--body);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--ink); }
+
+    .footer-copy {
+      width: 100%;
+      margin-top: var(--md);
+      padding-top: var(--sm);
+      border-top: 1px solid var(--hairline);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 56px; letter-spacing: -1.12px; }
+      .hero-profile { width: 260px; }
+    }
+
+    @media (max-width: 768px) {
+      .top-nav { padding: 0 var(--xs); }
+      .top-nav nav { display: none; }
+
+      .hero {
+        padding: var(--xxl) var(--xs) var(--xl);
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-profile {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: 280px;
+        aspect-ratio: 1/1;
+        margin-bottom: var(--md);
+        order: -1;
+      }
+
+      .hero h1 { font-size: 32px; letter-spacing: -0.5px; }
+      .hero-tagline { font-size: 14px; }
+
+      .section { padding: var(--xl) var(--xs); }
+      .card-grid { grid-template-columns: 1fr; }
+      .livery-band { padding: var(--xl) var(--xs); }
+      .livery-band h2 { font-size: 26px; }
+      footer { padding: var(--xl) var(--xs) var(--lg); }
+    }
+
+    @media (max-width: 640px) {
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- Hero -->
-    <header class="hero">
-      <img src="assets/profile.png" alt="Profile photo" />
-      <div class="hero-text">
-        <h1>Aqmar Zafri</h1>
-        <p class="tagline">Software Engineer &amp; Lifelong Learner</p>
-        <nav class="hero-links">
-          <a href="assets/cv.pdf" download>&#x1F4C4; Download CV</a>
-          <a href="mailto:hello@example.com">&#x2709;&#xFE0F; Email</a>
-          <a href="https://github.com/aqmarzafri" target="_blank" rel="noopener">&#x1F4BB; GitHub</a>
-        </nav>
+  <!-- Top Nav -->
+  <header class="top-nav">
+    <div class="monogram">AQMAR<span>.</span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="assets/cv.pdf" target="_blank" rel="noopener">CV</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img class="hero-profile" src="assets/profile.png" alt="Aqmar Zafri" />
+    <div class="hero-content">
+      <p class="hero-eyebrow">Portfolio</p>
+      <h1>Aqmar<br>Zafri</h1>
+      <p class="hero-tagline">Software Engineer &amp; Lifelong Learner</p>
+      <div class="hero-actions">
+        <a href="assets/cv.pdf" download class="btn-primary">Download CV</a>
+        <a href="#about" class="btn-outline">About Me</a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <!-- About -->
-    <section class="about">
-      <h2>About</h2>
-      <p>
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <h2 class="section-headline">Who I Am</h2>
+      <p class="about-body">
         I'm a software engineer passionate about building clean, performant applications.
         I enjoy working across the full stack and am always looking to learn new technologies
-        and contribute to meaningful projects.
+        and contribute to meaningful projects. My work sits at the intersection of engineering
+        rigour and thoughtful product design.
       </p>
-    </section>
+    </div>
+  </section>
 
-    <!-- Experience -->
-    <section>
-      <h2>Experience</h2>
-      <div class="card-list">
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <h2 class="section-headline">Work History</h2>
+      <div class="card-grid">
         <div class="card">
-          <div class="card-header">
-            <h3>Software Engineer</h3>
-            <span class="period">2023 – Present</span>
-          </div>
-          <div class="org">Company Name</div>
-          <p class="desc">Describe your role, key responsibilities, and notable achievements here.</p>
+          <p class="card-period">2023 – Present</p>
+          <h3 class="card-title">Software Engineer</h3>
+          <p class="card-org">Company Name</p>
+          <p class="card-desc">Describe your role, key responsibilities, and notable achievements here.</p>
         </div>
         <div class="card">
-          <div class="card-header">
-            <h3>Junior Developer</h3>
-            <span class="period">2021 – 2023</span>
-          </div>
-          <div class="org">Previous Company</div>
-          <p class="desc">Describe your previous role and what you accomplished.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section>
-      <h2>Education</h2>
-      <div class="card-list">
-        <div class="card">
-          <div class="card-header">
-            <h3>B.Sc. Computer Science</h3>
-            <span class="period">2017 – 2021</span>
-          </div>
-          <div class="org">University Name</div>
+          <p class="card-period">2021 – 2023</p>
+          <h3 class="card-title">Junior Developer</h3>
+          <p class="card-org">Previous Company</p>
+          <p class="card-desc">Describe your previous role and what you accomplished.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Skills -->
-    <section>
-      <h2>Skills</h2>
+  <!-- Education -->
+  <section class="section" id="education">
+    <div class="container">
+      <p class="section-label">Education</p>
+      <h2 class="section-headline">Academic Background</h2>
+      <div class="card-grid" style="grid-template-columns: 1fr;">
+        <div class="card">
+          <p class="card-period">2017 – 2021</p>
+          <h3 class="card-title">B.Sc. Computer Science</h3>
+          <p class="card-org">University Name</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="container">
+      <p class="section-label">Skills</p>
+      <h2 class="section-headline">Technologies</h2>
       <div class="skills-grid">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">Linux</span>
-        <span class="skill-tag">REST APIs</span>
-        <span class="skill-tag">Docker</span>
+        <span class="badge">Python</span>
+        <span class="badge">JavaScript</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">React</span>
+        <span class="badge">Node.js</span>
+        <span class="badge">SQL</span>
+        <span class="badge">Git</span>
+        <span class="badge">Linux</span>
+        <span class="badge">REST APIs</span>
+        <span class="badge">Docker</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CV -->
-    <section>
-      <h2>CV / Resume</h2>
-      <p>
-        You can <a href="assets/cv.pdf" download>download my CV (PDF)</a> or
-        <a href="assets/cv.pdf" target="_blank" rel="noopener">view it in your browser</a>.
-      </p>
-    </section>
-
-    <footer>
-      <p>&copy; <span id="yr"></span> Aqmar Zafri. Built for GitHub Pages.</p>
-    </footer>
+  <!-- CV / Livery band -->
+  <div class="livery-band" id="cv">
+    <div>
+      <h2>Curriculum Vitae</h2>
+      <p>Download or view the full PDF version of my resume.</p>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="assets/cv.pdf" download class="btn-outline-on-red">Download PDF</a>
+      <a href="assets/cv.pdf" target="_blank" rel="noopener" class="btn-outline-on-red">View Online</a>
+    </div>
   </div>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">AQMAR<span>.</span></div>
+      <div class="footer-links">
+        <a href="https://github.com/aqmarzafri" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:hello@example.com">Email</a>
+        <a href="assets/cv.pdf" download>CV</a>
+      </div>
+      <p class="footer-copy">&copy; <span id="yr"></span> Aqmar Zafri. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
